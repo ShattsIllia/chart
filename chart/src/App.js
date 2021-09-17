@@ -1,35 +1,39 @@
 import "./App.css";
 // import { LineChart, Line } from "recharts";
-import {getTime} from './getTimeFunk'
-import { useState } from "react";
-import { socket } from "./socket";
+import {getTime} from './functions/getTimeFunk'
+import React, { useState } from "react";
+import { socket } from "./functions/socket";
+import { refreshState } from "./functions/refreshState";
+import { AlVelComp } from "./components/AlvelComp";
+import { IlliaComp } from "./components/IlliaComp";
 
 function App() {
 
-  const [state, setSate] = useState([{
+  const [state, setState] = useState([{
     value: 0,
     timestamp: 0,
   }])
 
+  
+
+
 
   socket.on("data", (data) => {
-    setSate(
-      [...state, {
-        value: data[0].value,
-        timestamp: data[0].timestamp
-      }]
-    )
-  });
 
-  console.log(state);
+    console.count('x')
+
+    
+  });
+  
+
 
   return (
     <div className="App">
-        <div>{`value: ${1}`}</div>
         
-        {getTime()}
+        <AlVelComp />
+        <IlliaComp />
 
-     
+
     </div>
   );
 }
