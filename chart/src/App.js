@@ -1,36 +1,33 @@
 import "./App.css";
+// import { LineChart, Line } from "recharts";
+import {getTime} from './getTimeFunk'
 import { useState } from "react";
 import { socket } from "./socket";
 
 function App() {
-  const [data, setData] = useState({
+
+  const [state, setSate] = useState([{
     value: 0,
-    timestamp: 1631878046524
-  })
-
-  const getTime = (timestamp) => {
-      const date = new Date(timestamp)
-      const hours = date.getHours()
-      const minutes = date.getMinutes()
-      const seconds = date.getSeconds()
-
-      return `${hours}:${minutes<10?0: ''}${minutes}:${seconds<10?0:''}${seconds}`
-  }
+    timestamp: 0,
+  }])
 
 
-
-  socket.on("data", (...data) => {
-    // revert to classic upgrade
-    setData(data[0]);
+  socket.on("data", (data) => {
+    setSate(
+      [...state, {
+        value: data[0].value,
+        timestamp: data[0].timestamp
+      }]
+    )
   });
 
-  console.log();
+  console.log(state);
 
   return (
     <div className="App">
-        <div>{`value: ${data.value}`}</div>
+        <div>{`value: ${1}`}</div>
         
-        {getTime(data.timestamp)}
+        {getTime()}
 
      
     </div>
