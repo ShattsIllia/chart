@@ -1,22 +1,25 @@
-export   const refreshState=(data, state,  setState)=> {
-  
+export   const refreshState=(data, setState)=> {
+  // console.log(state.length);
     
-    if(state.length > 10) {
+  //   if(state.length > 10) {
+      
       
 
-      const newArr = [...state]
-      newArr.shift()
+  //     const newArr = [...state]
+  //     newArr.shift()
 
-      setState([...newArr, {
-        value: data.value,
-        timestamp: data.timestamp
-      }])
-    } else {
-      setState(
-        [...state, {
-          value: data.value,
-          timestamp: data.timestamp
-        }]
-      )      
-    }
+  //     console.log(newArr);
+
+  //     // setState([...newArr, {
+  //     //   value: data.value,
+  //     //   timestamp: data.timestamp
+  //     // }])
+  //   } else {
+  //     setState(
+  //       [...state, {
+  //         value: data.value,
+  //         timestamp: data.timestamp
+  //       }]
+  //     )      
+  //   }
   }
