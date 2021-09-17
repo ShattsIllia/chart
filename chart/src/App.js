@@ -1,18 +1,33 @@
 import './App.css';
-import {io} from "socket.io-client";
+// import io from "socket.io-client";
+import { useState } from 'react';
+import { socket } from './socket';
 
 function App() {
-    const socket = io("ws://localhost:3003", {
-        transports: ["websocket", "polling"] // use WebSocket first, if available
-    });
-    socket.on("data", (...data) => {
-        // revert to classic upgrade
-        console.log(data)
-    });
+
+  const [data, setData] = useState({
+    value: 0,
+    timestamp: 1631878046524
+  })
+
+
+
+
+
+  
+  socket.on("data", (...data) => {
+      // revert to classic upgrade
+      setData(data[0]);
+  });
+
+ console.log();
+
   return (
     <div className="App">
-            Hello World!
-      dsadasdasdad......
+        <div>{`value: ${data.value}`}</div>
+        
+        {`timeStamp: ${Date(data.timestamp)}`}
+
     </div>
   );
 }
