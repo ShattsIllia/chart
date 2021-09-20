@@ -1,11 +1,11 @@
 import "./App.css";
-// import { LineChart, Line } from "recharts";
-import {getTime} from './functions/getTimeFunk'
 import React, { useEffect, useState } from "react";
 import { socket } from "./functions/socket";
 import { refreshState } from "./functions/refreshState";
-import { AlVelComp } from "./components/AlvelComp";
-import { IlliaComp } from "./components/IlliaComp";
+import {Link, Route, BrowserRouter as Router,} from 'react-router-dom'
+import {routes} from './routes';
+
+export const ChartDataContext = React.createContext([]);
 
 function App() {
 
@@ -13,21 +13,42 @@ function App() {
     value: 0,
     timestamp: 0
   }])
-  
+
   useEffect(() => {
     socket.on("data", (data) => {
         setChartData(prev => refreshState(prev, data))
     });
   }, [])
-
-    const lastChartValue = chartData[chartData.length - 1]
+    
+  const defaultRouteConfig = true
   
   return (
-    <div className="App">
-        <AlVelComp />
-        <IlliaComp chartData={chartData}/>
-    </div>
+    <ChartDataContext.Provider value={chartData}>
+      <Router>
+      
+          <ul>
+            <li><Link to="/alex">First Page</Link></li>
+            <li><Link to="/illia">Second Page</Link></li>
+            <li><Link to="/user">User</Link></li>
+          </ul>
+
+        {routes.map((route) => (
+            <Route
+                exact={route.exact}
+                key={route.name}
+                path={route.path}
+                render={(props) => (
+                    <route.layout {...props} config={route.config || defaultRouteConfig}>
+                        <route.component {...props} />
+                    </route.layout>
+                )}
+            />
+        ))}
+
+      </Router>
+    </ChartDataContext.Provider>
   );
+
 }
 
 export default App;
