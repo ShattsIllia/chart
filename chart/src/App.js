@@ -9,33 +9,29 @@ import { IlliaComp } from "./components/IlliaComp";
 
 function App() {
 
-  const [state, setState] = useState([{
+  const [chartData, setChartData] = useState([{
     value: 0,
     timestamp: 0
   }])
-
   
   useEffect(() => {
     socket.on("data", (data) => {
-      setState(prev => refreshState(prev, data))
+        setChartData(prev => refreshState(prev, data))
     });
   }, [])
 
-
-
+    const lastChartValue = chartData[chartData.length - 1]
   
   return (
     <div className="App">
 
-        <div>{state[state.length - 1].value.toFixed(2)} </div>
-        <div>{state[state.length - 1].timestamp}</div>      
+        <div>{chartData[chartData.length - 1].value.toFixed(2)} </div>
+        <div>{chartData[chartData.length - 1].timestamp}</div>      
         
         <AlVelComp
-          data = {state}
+          data = {chartData}
         />
         <IlliaComp />
-        
-
 
     </div>
   );
