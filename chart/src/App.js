@@ -14,13 +14,13 @@ function App() {
     timestamp: 0
   }])
   
+
   useEffect(() => {
     socket.on("data", (data) => {
         setChartData(prev => refreshState(prev, data))
     });
   }, [])
 
-    const lastChartValue = chartData[chartData.length - 1]
   
   return (
     <div className="App">
