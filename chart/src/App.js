@@ -17,11 +17,8 @@ function App() {
   
   useEffect(() => {
     socket.on("data", (data) => {
-
-      
       setState(prev => refreshState(prev, data))
-
-      });
+    });
   }, [])
 
 
@@ -29,13 +26,14 @@ function App() {
   
   return (
     <div className="App">
+
+        <div>{state[state.length - 1].value.toFixed(2)} </div>
+        <div>{getTime(state[state.length - 1].timestamp)}</div>      
         
         <AlVelComp />
         <IlliaComp />
         
-        <div>{state[state.length - 1].value} </div>
 
-        {getTime(state[state.length - 1].timestamp)}
 
     </div>
   );

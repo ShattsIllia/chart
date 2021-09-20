@@ -4,6 +4,6 @@ export const AlVelComp = () => {
 
 
     return (
-        <div>Al</div>
+        <div>AlVel component</div>
     )
    }
