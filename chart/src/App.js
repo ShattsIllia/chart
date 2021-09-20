@@ -15,33 +15,28 @@ function App() {
   }])
 
   
-
-  
- useEffect(() => {
+  useEffect(() => {
     socket.on("data", (data) => {
-      console.log(data);
 
-      setState(data)
+      
+      setState(prev => refreshState(prev, data))
 
-      // refreshState(data, state, setState)
-
-        
       });
- }, [])
+  }, [])
+
 
 
   
-  
-
-
   return (
     <div className="App">
         
         <AlVelComp />
         <IlliaComp />
         
-        <div>{state.value} </div>
-        {getTime(state.timestamp)}
+        <div>{state[state.length - 1].value} </div>
+
+        {getTime(state[state.length - 1].timestamp)}
+
     </div>
   );
 }
