@@ -1,11 +1,10 @@
-export   const refreshState=(data, newItem)=> {  
-    if(data.length > 9) {
-    let  newArr = [...data]
-    newArr.shift()
-    newArr.push(newItem)
-    return newArr
+export const refreshState = (data, newItem) => {
+  if (data.length > 9) {
+    let newArr = [...data];
+    newArr.shift();
+    newArr.push(newItem);
+    return newArr;
   } else {
-    const newArr = [...data, newItem]
-    return newArr
+    return [...data, newItem];
   }
-}
+};
