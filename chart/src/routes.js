@@ -1,5 +1,7 @@
 import {AlVelComp} from "./components/AlvelComp";
 import {IlliaComp} from "./components/IlliaComp";
+import { Layout } from "./components/Leyout";
+import { UsersPage } from "./components/Users"
 
 export const routes = [
     {
@@ -7,7 +9,7 @@ export const routes = [
         path: '/alex',
         exact: false,
         component: AlVelComp,
-        layout: <></>,
+        layout: Layout,
         config: {
             withHeader: false
         }
@@ -17,7 +19,17 @@ export const routes = [
         path: '/illia',
         exact: false,
         component: IlliaComp,
-        layout: <></>,
+        layout: Layout,
+        config: {
+            withHeader: false
+        }
+    },
+    {
+        name: 'users',
+        path: '/users',
+        exact: false,
+        component: UsersPage,
+        layout: Layout,
         config: {
             withHeader: false
         }

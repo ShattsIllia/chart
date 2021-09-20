@@ -7,14 +7,20 @@ import {
     Tooltip,
     Legend
 } from "recharts";
+import { useContext } from 'react';
+import { ChartDataContext } from '../../App';
 
 
 const type = "monotone";
 
-export const AlVelComp = ({chartData}) => {
+export const AlVelComp = () => {
 
+    const chartData = useContext(ChartDataContext)
+ 
 
     return (
+
+        
         <div className = {styles.wrapper}>
             
             <div> {/* first chart */}
@@ -48,6 +54,7 @@ export const AlVelComp = ({chartData}) => {
             </div>
 
         </div>
+        
     )
 
 

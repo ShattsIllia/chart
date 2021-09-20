@@ -5,15 +5,16 @@ import { refreshState } from "./functions/refreshState";
 import {BrowserRouter as Router, Route, Link,} from 'react-router-dom'
 import {routes} from "./routes";
 
+
+export const ChartDataContext = React.createContext([])
+
+
 function App() {
-    //useContext
+
   const [chartData, setChartData] = useState([{
     value: 0,
     timestamp: 0
   }])
-
-
-  
 
   useEffect(() => {
     socket.on("data", (data) => {
@@ -25,13 +26,17 @@ function App() {
     withHeader: true,
   }
 
+
   return (
-    <div>
+    <ChartDataContext.Provider value={chartData}>
+
+
       <Router>
       
           <ul>
             <li><Link to="/alex">First Page</Link></li>
             <li><Link to="/illia">Second Page</Link></li>
+            <li><Link to="/users">Users</Link></li>
           </ul>
 
         {routes.map((route) => (
@@ -46,9 +51,13 @@ function App() {
                 )}
             />
         ))}
+
+
+
+
       
       </Router>
-    </div>
+    </ChartDataContext.Provider>
 );
 }
 export default App;

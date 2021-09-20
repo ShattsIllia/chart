@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
+import { ChartDataContext } from '../../App';
 
-export const IlliaComp = ({chartData}) => {
+export const IlliaComp = () => {
+  const chartData = useContext(ChartDataContext)
 
     return (
         <div >

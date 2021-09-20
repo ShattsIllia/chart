@@ -3,8 +3,9 @@ import { useEffect, useState } from "react"
 
 
 
-export const useApi = (url) => {
+export const useApi = (url = "https://jsonplaceholder.typicode.com/users") => {
 
+    //https://jsonplaceholder.typicode.com/users
 
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
@@ -16,9 +17,12 @@ export const useApi = (url) => {
           return response.json()
         })
         .then(json => {
-          console.log(json)
           setLoading(false)
           setData(json)
+        })
+        .catch(e => {
+          setLoading(false)
+          setError(e)
         })
     };
     
@@ -26,6 +30,5 @@ export const useApi = (url) => {
         fetchApi();
     }, []);
     
-    return { data, loading, error }
-
+    return  [data, loading, error ]
 }
