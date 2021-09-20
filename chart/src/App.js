@@ -24,13 +24,8 @@ function App() {
   
   return (
     <div className="App">
-
-        <div>{lastChartValue.value.toFixed(2)} </div>
-        <div>{getTime(lastChartValue.timestamp)}</div>
-        
         <AlVelComp />
-        <IlliaComp />
-
+        <IlliaComp chartData={chartData}/>
     </div>
   );
 }
