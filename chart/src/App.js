@@ -1,11 +1,11 @@
 import "./App.css";
-// import { LineChart, Line } from "recharts";
-import {getTime} from './functions/getTimeFunk'
 import React, { useEffect, useState } from "react";
 import { socket } from "./functions/socket";
 import { refreshState } from "./functions/refreshState";
 import { AlVelComp } from "./components/AlvelComp";
 import { IlliaComp } from "./components/IlliaComp";
+
+
 
 function App() {
 
@@ -28,9 +28,11 @@ function App() {
     <div className="App">
 
         <div>{state[state.length - 1].value.toFixed(2)} </div>
-        <div>{getTime(state[state.length - 1].timestamp)}</div>      
+        <div>{state[state.length - 1].timestamp}</div>      
         
-        <AlVelComp />
+        <AlVelComp
+          data = {state}
+        />
         <IlliaComp />
         
 

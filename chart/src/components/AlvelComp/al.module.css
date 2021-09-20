@@ -1,0 +1,11 @@
+
+.wrapper{
+    max-width: 960px;
+    width: 100%;
+    height: 400px;
+    margin: 0 auto;
+    background-color: rgb(221, 200, 240);
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+}
