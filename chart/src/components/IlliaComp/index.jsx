@@ -2,7 +2,7 @@ import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
 
 export const IlliaComp = ({chartData}) => {
-   
+
     return (
         <div >
             'Illia component'

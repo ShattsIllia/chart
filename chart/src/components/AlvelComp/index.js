@@ -11,7 +11,7 @@ import {
 
 const type = "monotone";
 
-export const AlVelComp = ({data}) => {
+export const AlVelComp = ({chartData}) => {
 
 
     return (
@@ -21,7 +21,7 @@ export const AlVelComp = ({data}) => {
                 <LineChart
                     width={500}
                     height={300}
-                    data={data}
+                    data={chartData}
                     margin={{ top: 50, right: 20, bottom: 5, left: 0 }}
                 >
                     <Line type={type} dataKey="value" stroke="#8884d8" dot={true} />
@@ -35,7 +35,7 @@ export const AlVelComp = ({data}) => {
                 <BarChart
                     width={500}
                     height={300}
-                    data={data}
+                    data={chartData}
                     margin={{ top: 5, right: 20, left: 0, bottom: 5 }}
                 >
                     <CartesianGrid strokeDasharray="3 3" />
