@@ -1,4 +1,5 @@
-import  {useState, useEffect} from "react"
+import {useState, useEffect, useCallback} from "react"
+import axios from 'axios'
 
 
 export const useApi = (url = "https://jsonplaceholder.typicode.com/users") => {
@@ -6,24 +7,25 @@ export const useApi = (url = "https://jsonplaceholder.typicode.com/users") => {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
     const [data, setData] = useState(null)
-    const fetchApi = () => {
-        fetch(url)
-        .then(response => {
-          return response.json()
-        })
-        .then(json => {
-          console.log(json)
-          setLoading(false)
-          setData(json)
-        })
-        .catch(e => {
-          setLoading(false)
-          console.log(e);
-          setError(e)
-        })
-    };
+
+    const handleError = (error) => {
+        setError(error.response?.data.err)
+        setLoading(false)
+    }
+
+    const runQuery = useCallback(() => {
+        const handleSuccess = (res) => {
+            setData(res.data)
+            setLoading(false)
+        }
+
+        setLoading(true)
+        axios.get(url).then(handleSuccess).catch(handleError)
+    }, [url])
+
     useEffect(() => {
-        fetchApi();
-    }, []);
-    return  [data, loading, error ]
+        runQuery()
+    }, [runQuery])
+
+    return { data, loading, error, refetch: runQuery }
 }
